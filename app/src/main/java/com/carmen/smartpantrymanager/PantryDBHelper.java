@@ -15,21 +15,20 @@ public class PantryDBHelper extends SQLiteOpenHelper {
     //columns of the pantry table
     public static final String PANTRY_TABLE_NAME = "PantryItems";
 
-    //column constants
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_INGREDIENT_NAME = "ingredient_name";
-    public static final String COLUMN_QUANTITY = "quantity";
-    public static final String COLUMN_UNIT = "unit";
-    public static final String COLUMN_EXPIRY_DATE = "expiry_date";
-
+    //table column constants
+    public static final String COL1_ID = "_id";
+    public static final String COL2_INGREDIENT_NAME = "ingredient_name";
+    public static final String COL3_QUANTITY = "quantity";
+    public static final String COL4_UNIT = "unit";
+    public static final String COL5_EXPIRY_DATE = "expiry_date";
     //sql statement to create the pantry table with above information
     private static final String CREATE_PANTRY_TABLE =
             "CREATE TABLE " + PANTRY_TABLE_NAME + "(" +
-                    COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COLUMN_INGREDIENT_NAME + " TEXT NOT NULL, " +
-                    COLUMN_QUANTITY + " REAL NOT NULL, " +
-                    COLUMN_UNIT + " TEXT NOT NULL, " +
-                    COLUMN_EXPIRY_DATE + " TEXT " + ")";
+                    COL1_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COL2_INGREDIENT_NAME + " TEXT NOT NULL, " +
+                    COL3_QUANTITY + " REAL NOT NULL, " +
+                    COL4_UNIT + " TEXT NOT NULL, " +
+                    COL5_EXPIRY_DATE + " TEXT " + ")";
 
     //this passes db details to sqliteopenhelper parent class
     public PantryDBHelper(Context context){
@@ -49,11 +48,11 @@ public class PantryDBHelper extends SQLiteOpenHelper {
 
         db.execSQL(
                 "CREATE TEMPORARY TABLE pantry_backup AS " + "SELECT " +
-                        COLUMN_ID + ", " +
-                        COLUMN_INGREDIENT_NAME + ", " +
-                        COLUMN_QUANTITY + ", " +
-                        COLUMN_UNIT + ", " +
-                        COLUMN_EXPIRY_DATE +
+                        COL1_ID + ", " +
+                        COL2_INGREDIENT_NAME + ", " +
+                        COL3_QUANTITY + ", " +
+                        COL4_UNIT + ", " +
+                        COL5_EXPIRY_DATE +
                         " FROM " + PANTRY_TABLE_NAME );
 
         // this deletes the old pantry table, creates new table and inserts old data
@@ -62,16 +61,16 @@ public class PantryDBHelper extends SQLiteOpenHelper {
 
         db.execSQL(
                 "INSERT INTO " + PANTRY_TABLE_NAME + " (" +
-                        COLUMN_ID + ", " +
-                        COLUMN_INGREDIENT_NAME + ", " +
-                        COLUMN_QUANTITY + ", " +
-                        COLUMN_UNIT + ", " +
-                        COLUMN_EXPIRY_DATE + ") " +
-                        "SELECT " + COLUMN_ID + ", " +
-                        COLUMN_INGREDIENT_NAME + ", " +
-                        COLUMN_QUANTITY + ", " +
-                        COLUMN_UNIT + ", " +
-                        COLUMN_EXPIRY_DATE + " " +
+                        COL1_ID + ", " +
+                        COL2_INGREDIENT_NAME + ", " +
+                        COL3_QUANTITY + ", " +
+                        COL4_UNIT + ", " +
+                        COL5_EXPIRY_DATE + ") " +
+                        "SELECT " + COL1_ID + ", " +
+                        COL2_INGREDIENT_NAME + ", " +
+                        COL3_QUANTITY + ", " +
+                        COL4_UNIT + ", " +
+                        COL5_EXPIRY_DATE + " " +
                         "FROM pantry_backup"
         );
 
