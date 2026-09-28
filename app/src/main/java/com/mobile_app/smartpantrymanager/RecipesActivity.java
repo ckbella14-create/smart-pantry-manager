@@ -10,7 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class SuggestedRecipesActivity extends AppCompatActivity {
+public class RecipesActivity extends AppCompatActivity {
 
     //attributes for the bottom navigation
     private LinearLayout pantryNavigation;
@@ -20,7 +20,7 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_suggested_recipes);
+        setContentView(R.layout.activity_recipes);
 
         //connects the bottom navigation to the layout
         pantryNavigation = findViewById(R.id.pantryNavigation);
@@ -29,14 +29,14 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         //opens the My Pantry screen
         pantryNavigation.setOnClickListener(view -> {
             Intent pantryIntent =
-                    new Intent(SuggestedRecipesActivity.this, MainActivity.class);
+                    new Intent(RecipesActivity.this, MainActivity.class);
             startActivity(pantryIntent);
         });
 
         //opens the Settings screen
         settingsNavigation.setOnClickListener(view -> {
             Intent settingsIntent =
-                    new Intent(SuggestedRecipesActivity.this, SettingsActivity.class);
+                    new Intent(RecipesActivity.this, SettingsActivity.class);
             startActivity(settingsIntent);
         });
 

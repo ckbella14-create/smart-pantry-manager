@@ -33,7 +33,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
         recipesNavigation.setOnClickListener(view -> {
             Intent recipesIntent = new Intent(SettingsActivity.this,
-                    SuggestedRecipesActivity.class);
+                    RecipesActivity.class);
             startActivity(recipesIntent);
         });
         //connects the expiry option to the layout

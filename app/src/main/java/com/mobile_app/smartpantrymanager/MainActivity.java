@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         //  to open the recipes screen
         recipesNavigation.setOnClickListener(view -> {
             Intent toSuggestedRecipes = new Intent(MainActivity.this,
-                    SuggestedRecipesActivity.class);
+                    RecipesActivity.class);
             startActivity(toSuggestedRecipes);
         });
 
