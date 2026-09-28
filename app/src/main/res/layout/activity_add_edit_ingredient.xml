@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- header section -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp">
+
+        <!-- header image-->
+        <ImageView
+            android:id="@+id/pantryHeaderImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="My Pantry header"
+            android:scaleType="centerCrop"
+            android:src="@drawable/new_ingredients" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id = "@+id/IngredientNameLbl"
+        android:layout_width = "match_parent"
+        android:layout_height="wrap_content"
+        android:text = " Ingredient Name *"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#056B75"
+        android:paddingBottom="12dp"
+        android:layout_marginTop="14dp"/>
+
+    <!--this is where the user enters the information-->
+    <EditText
+        android:id = "@+id/enterIngredientName"
+        android:layout_width = "match_parent"
+        android:layout_height="wrap_content"
+        android:inputType = "textCapWords"
+        android:layout_marginBottom="12dp"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id = "@+id/QuantityLbl"
+        android:layout_width = "match_parent"
+        android:layout_height="wrap_content"
+        android:text = " Quantity *"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#056B75"
+        android:paddingBottom="16dp" />
+    <EditText
+        android:id = "@+id/enterQuantity"
+        android:layout_width = "match_parent"
+        android:layout_height="wrap_content"
+        android:hint= "Enter numeric values only"
+        android:inputType = "numberDecimal"
+        android:layout_marginBottom="12dp"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id = "@+id/UnitLbl"
+        android:layout_width = "match_parent"
+        android:layout_height="wrap_content"
+        android:text = " Unit *"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#056B75"
+        android:paddingBottom="16dp" />
+    <!--dropdown for unit-->
+    <Spinner
+        android:id="@+id/unitDropDown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"/>
+
+    <!--this will only show if Other is selected otherwise it will be hidden-->
+    <EditText
+        android:id="@+id/enterOtherUnit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter unit not in the list"
+        android:inputType="text"
+        android:visibility="gone"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- label for the expiry date -->
+    <TextView
+        android:id = "@+id/ExpiryDateLbl"
+        android:layout_width = "match_parent"
+        android:layout_height="wrap_content"
+        android:text = "Expiry Date *"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#056B75"
+        android:paddingBottom="16dp"
+        android:layout_marginTop="12dp"/>
+
+    <EditText
+        android:id="@+id/enterExpiryDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Select expiry date"
+        android:focusable="false"
+        android:clickable="true"
+        android:inputType="none"
+        android:layout_marginBottom="12dp"
+        android:textSize="16sp"/>
+
+    <!--button to save the new ingredient-->
+    <Button
+        android:id="@+id/saveIngredientBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Save Ingredient"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button_teal"
+        android:backgroundTint="@null"/>
+
+</LinearLayout>

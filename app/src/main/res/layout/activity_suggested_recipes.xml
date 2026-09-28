@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context=".SuggestedRecipesActivity">
+
+    <!-- recipes header image -->
+    <ImageView
+        android:id="@+id/recipesHeaderImage"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/new_recipes"
+        android:contentDescription="Recipes header" />
+
+    <!-- space where suggested recipes will be displayed -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recipesListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp" />
+
+    <!-- bottom navigation menu -->
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:paddingTop="6dp"
+        android:paddingBottom="4dp">
+
+        <!--home nav-->
+        <LinearLayout
+            android:id="@+id/pantryNavigation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/menu_home"
+                android:contentDescription="My Pantry"
+                app:tint="#78909C" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="My Pantry"
+                android:textSize="12sp"
+                android:textColor="#78909C" />
+
+        </LinearLayout>
+
+        <!--recipes nav-->
+        <LinearLayout
+            android:id="@+id/recipesNavigation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/dining"
+                android:contentDescription="Recipes"
+                app:tint="#087F8C" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Recipes"
+                android:textSize="12sp"
+                android:textColor="#087F8C" />
+
+        </LinearLayout>
+
+        <!--settings nav-->
+        <LinearLayout
+            android:id="@+id/settingsNavigation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/menu_settings"
+                android:contentDescription="Settings"
+                app:tint="#78909C" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Settings"
+                android:textSize="12sp"
+                android:textColor="#78909C" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.carmen.smartpantrymanager"
+    namespace = "com.mobile_app.smartpantrymanager"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "com.carmen.smartpantrymanager"
+        applicationId = "com.mobile_app.smartpantrymanager"
         minSdk = 24
         targetSdk = 37
         versionCode = 1

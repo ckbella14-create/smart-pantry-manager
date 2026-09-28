@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context=".SettingsActivity">
+
+
+    <!-- space for the settings options -->
+    <!-- header section layout  -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp">
+
+        <!--header image -->
+        <ImageView
+            android:id="@+id/pantryHeaderImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="Settings Header"
+            android:scaleType="centerCrop"
+            android:src="@drawable/settings_header" />
+
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <!-- expiry options -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/settings_about_app_background"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Expiry Options"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#075E68" />
+
+            <CheckBox
+                android:id="@+id/expiryAlertCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Show ingredients expiring within 7 days"
+                android:textSize="15sp"
+                android:textColor="#78909C" />
+
+        </LinearLayout>
+
+        <!-- about the app -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:background="@drawable/settings_about_app_background"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About Smart Pantry"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#075E68" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="Smart Pantry Manager helps you manage pantry ingredients, keep track of expiry dates and reduce unnecessary food waste.  Version 1.0.0.1 Build 1"
+                android:textSize="14sp"
+                android:textColor="#78909C" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- bottom navigation menu -->
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:paddingTop="6dp"
+        android:paddingBottom="4dp">
+
+        <!--home nav-->
+        <LinearLayout
+            android:id="@+id/pantryNavigation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/menu_home"
+                android:contentDescription="My Pantry"
+                app:tint="#78909C" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="My Pantry"
+                android:textSize="12sp"
+                android:textColor="#78909C" />
+
+        </LinearLayout>
+
+        <!--recipes nav-->
+        <LinearLayout
+            android:id="@+id/recipesNavigation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/dining"
+                android:contentDescription="Recipes"
+                app:tint="#78909C" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Recipes"
+                android:textSize="12sp"
+                android:textColor="#78909C" />
+
+        </LinearLayout>
+
+        <!--settings nav-->
+        <LinearLayout
+            android:id="@+id/settingsNavigation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/menu_settings"
+                android:contentDescription="Settings"
+                app:tint="#087F8C" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Settings"
+                android:textSize="12sp"
+                android:textColor="#087F8C" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.carmen.smartpantrymanager;
+package com.mobile_app.smartpantrymanager;
 
 import org.junit.Test;
 

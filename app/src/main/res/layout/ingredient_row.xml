@@ -8,7 +8,7 @@
 
     <!--shows/displays ingredient name-->
     <TextView
-        android:id = "@+id/tvIngredientName"
+        android:id = "@+id/ingredientNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text = "Ingredient Name"
@@ -18,7 +18,7 @@
 
     <!--ingredient qty and unit-->
     <TextView
-        android:id = "@+id/tvQuantity"
+        android:id = "@+id/quantityTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -28,12 +28,40 @@
 
     <!--expiry date -->
     <TextView
-        android:id = "@+id/tvExpiryDate"
+        android:id = "@+id/expiryDateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text = "Expiry Date: 2026-09-20"
         android:textSize="14sp"
         android:textColor="#075E68" />
+
+    <!--buttons to edit or delete ingredient-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/editIngredientButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:backgroundTint="#E0E0E0"
+            android:text="Edit"
+            android:textColor="#075E68"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/deleteIngredientButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#E0E0E0"
+            android:text="Delete"
+            android:textColor="#075E68"
+            android:textSize="12sp" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,79 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- this is the main layout for the My pantry screen -->
+<!-- this is the main layout for My pantry screen -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools = "http://schemas.android.com/tools"
-    android:id = "@+id/main"
-    android:layout_width = "match_parent"
-    android:layout_height = "match_parent"
-    android:orientation = "vertical"
-    android:background = "#FFFFFFF"
-    tools:context = ".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
 
-    <!-- header section -->
+    <!-- header section layout  -->
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp">
+        android:layout_height="85dp">
 
-        <!-- header image-->
+        <!--header image -->
         <ImageView
-            android:id = "@+id/ivPantryHeader"
-            android:layout_width = "match_parent"
-            android:layout_height = "match_parent"
-            android:src = "@drawable/my_pantry_final"
-            android:scaleType = "centerCrop"
-            android:contentDescription = "My Pantry header"/>
-
-        <!--logged in user -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity = "top|end"
-            android:orientation = "horizontal"
-            android:gravity = "center_vertical"
-            android:layout_margin = "12dp">
-
-
-            <ImageView
-                android:id = "@+id/ivUserProfile"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src = "@drawable/user_profile"
-                android:contentDescription = "User profile icon" />
-
-            <TextView
-                android:id = "@+id/tvLoggedInUser"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart = "8dp"
-                android:text = "User"
-                android:textSize = "14sp"
-                android:textStyle = "bold"
-                android:textColor = "#075E68"
-                android:background="@drawable/user_container"
-                android:padding="5dp"/>
-        </LinearLayout>
+            android:id="@+id/pantryHeaderImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="My Pantry header"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pantry_new" />
 
     </FrameLayout>
-    <!-- Puts the pantry ingredients in a scrolling list-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id = "@+id/rvPantryItems"
-        android:layout_width = "match_parent"
-        android:layout_height = "0dp"
-        android:layout_weight = "1"
-        android:padding = "16dp" />
 
-    <!--add ingredients button -->
+    <!-- search all ingredients and show count of available ingredients in pantry -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!--  this section is where the search container is placed -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/search_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <!--this is to enter text to search for ingredient-->
+            <EditText
+                android:id="@+id/searchIngredients"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Enter ingredient then click the search icon"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textSize="15sp" />
+
+            <!-- search icon from android vectors -->
+            <ImageView
+                android:id="@+id/searchIngredientsButton"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="Search icon"
+                android:src="@drawable/search_24" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- holds the pantry list and no items message -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- shows the pantry ingredients in a scrolling list -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ingredientDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingStart="16dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp" />
+
+        <!-- shows if the pantry has no ingredients -->
+        <TextView
+            android:id="@+id/noIngredientsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="No items to display"
+            android:textColor="#78909C"
+            android:textSize="16sp" />
+
+    </FrameLayout>
+
+    <!-- add ingredients button -->
     <Button
-        android:layout_margin = "16dp"
-        android:layout_width ="match_parent"
-        android:layout_height ="wrap_content"
-        android:text = "Add Ingredient"
-        android:backgroundTint="#087F8C"
+        android:id="@+id/addIngredientButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/button_teal"
+        android:backgroundTint="@null"
+        android:text="Add new ingredient"
         android:textColor="#FFFFFF" />
 
+    <!-- menu at the bottom of each screen -->
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="6dp"
+        android:paddingBottom="4dp">
+
+        <!-- overall pantry home nav -->
+        <LinearLayout
+            android:id="@+id/pantryNavigation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:contentDescription="My Pantry"
+                android:src="@drawable/menu_home"
+                app:tint="#087F8C" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="My Pantry"
+                android:textColor="#087F8C"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <!-- recipes nav -->
+        <LinearLayout
+            android:id="@+id/recipesNavigation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:contentDescription="Recipes"
+                android:src="@drawable/dining"
+                app:tint="#78909C" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Recipes"
+                android:textColor="#78909C"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <!-- settings nav -->
+        <LinearLayout
+            android:id="@+id/settingsNavigation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:contentDescription="Settings"
+                android:src="@drawable/menu_settings"
+                app:tint="#78909C" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Settings"
+                android:textColor="#78909C"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>
-
-
-
-

@@ -1,10 +1,10 @@
 //package
-package com.carmen.smartpantrymanager;
+package com.mobile_app.smartpantrymanager;
 
 //imports
 
-//This class will create an object of an ingredient's information
-public class PantryItem {
+//This class will create an object or a row of an ingredient's information
+public class Ingredient {
     //attributes
     private int id;
     private String ingredientName;
@@ -13,7 +13,7 @@ public class PantryItem {
     private String expiryDate;
 
     //default constructor
-    public PantryItem(){
+    public Ingredient(){
     }
 
     //getter methods to access the private attributes
@@ -37,6 +37,7 @@ public class PantryItem {
         return expiryDate;
     }
 
+
     // setter methods to set the values of the fields
     public void setId(int id) {
         this.id = id;
@@ -57,4 +58,5 @@ public class PantryItem {
     public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
     }
+
 }
