@@ -2,25 +2,24 @@ package com.mobile_app.smartpantrymanager;
 
 //imports
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 
-//this class handles connecting all the recipe data to the views in each RecyclerView row
+//this class will handle connecting all the recipe data to the views in each RecyclerView row
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
     //list of recipes to display
     private ArrayList<Recipe> recipes;
     private Context context;
 
-    //constructor
+    // the constructor
     public RecipeAdapter(ArrayList<Recipe> recipes, Context context) {
         this.recipes = recipes;
         this.context = context;
@@ -32,7 +31,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         TextView recipeIngredientCountTextView;
         TextView ingredientMatchTextView;
         Button viewRecipeButton;
-
+        Button editRecipeButton;
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -40,6 +39,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             recipeIngredientCountTextView = itemView.findViewById(R.id.recipeIngredientCountTextView);
             ingredientMatchTextView = itemView.findViewById(R.id.ingredientMatchTextView);
             viewRecipeButton = itemView.findViewById(R.id.viewRecipeButton);
+            editRecipeButton = itemView.findViewById(R.id.editRecipeButton);
         }
     }
 
@@ -101,6 +101,56 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         //ingredient matching will be added next
         holder.ingredientMatchTextView.setText("");
+
+        // this will let the user edit the recipe
+        holder.editRecipeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View editRecipe) {
+            Intent editRecipeIntent = new Intent(context, AddEditRecipeActivity.class);
+
+            editRecipeIntent.putExtra("recipeId", recipe.getId());
+            editRecipeIntent.putExtra("recipeName", recipe.getRecipeName());
+            editRecipeIntent.putExtra("ingredient1", recipe.getIngredient1());
+            editRecipeIntent.putExtra("ingredient2", recipe.getIngredient2());
+            editRecipeIntent.putExtra("ingredient3", recipe.getIngredient3());
+            editRecipeIntent.putExtra("ingredient4", recipe.getIngredient4());
+            editRecipeIntent.putExtra("ingredient5", recipe.getIngredient5());
+            editRecipeIntent.putExtra("ingredient6", recipe.getIngredient6());
+            editRecipeIntent.putExtra("ingredient7", recipe.getIngredient7());
+            editRecipeIntent.putExtra("ingredient8", recipe.getIngredient8());
+            editRecipeIntent.putExtra("ingredient9", recipe.getIngredient9());
+            editRecipeIntent.putExtra("ingredient10", recipe.getIngredient10());
+            editRecipeIntent.putExtra("instructions", recipe.getInstructions());
+
+            context.startActivity(editRecipeIntent);
+
+            }
+        });
+
+            //this will let the user view the recipe
+        holder.viewRecipeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View viewRecipe) {
+                Intent viewRecipeIntent = new Intent(context, AddEditRecipeActivity.class);
+
+                viewRecipeIntent.putExtra("recipeId", recipe.getId());
+                viewRecipeIntent.putExtra("recipeName", recipe.getRecipeName());
+                viewRecipeIntent.putExtra("ingredient1", recipe.getIngredient1());
+                viewRecipeIntent.putExtra("ingredient2", recipe.getIngredient2());
+                viewRecipeIntent.putExtra("ingredient3", recipe.getIngredient3());
+                viewRecipeIntent.putExtra("ingredient4", recipe.getIngredient4());
+                viewRecipeIntent.putExtra("ingredient5", recipe.getIngredient5());
+                viewRecipeIntent.putExtra("ingredient6", recipe.getIngredient6());
+                viewRecipeIntent.putExtra("ingredient7", recipe.getIngredient7());
+                viewRecipeIntent.putExtra("ingredient8", recipe.getIngredient8());
+                viewRecipeIntent.putExtra("ingredient9", recipe.getIngredient9());
+                viewRecipeIntent.putExtra("ingredient10", recipe.getIngredient10());
+                viewRecipeIntent.putExtra("instructions", recipe.getInstructions());
+                viewRecipeIntent.putExtra("viewOnly", true);
+
+                context.startActivity(viewRecipeIntent);
+            }
+        });
     }
 
     //tells RecyclerView how many recipe rows to display

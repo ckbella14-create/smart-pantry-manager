@@ -28,12 +28,14 @@ public class RecipesActivity extends AppCompatActivity {
     private RecipeAdapter recipeAdapter;
     private RecipesDataSource recipesDataSource;
 
-    //attributes for recipe search and filtering only
+    //attributes for recipe search, filtering only and shows suggestions and message for no matches
     private EditText searchRecipes;
     private ImageView searchRecipesButton;
+    private LinearLayout recipeSearchContainer;
     private Button suggestedRecipesButton;
     private Button viewAllRecipesButton;
     private TextView noSuggestedRecipesText;
+    private TextView suggestedRecipesText;
 
     // these attributes are for the bottom navigation and the button
     private LinearLayout pantryNavigation;
@@ -51,9 +53,11 @@ public class RecipesActivity extends AppCompatActivity {
         recipesListView = findViewById(R.id.recipesListView);
         searchRecipes = findViewById(R.id.searchRecipes);
         searchRecipesButton = findViewById(R.id.searchRecipesButton);
+        recipeSearchContainer = findViewById(R.id.recipeSearchContainer);
         suggestedRecipesButton = findViewById(R.id.suggestedRecipesButton);
         viewAllRecipesButton = findViewById(R.id.viewAllRecipesButton);
         noSuggestedRecipesText = findViewById(R.id.noSuggestedRecipesText);
+        suggestedRecipesText = findViewById(R.id.suggestedRecipesText);
         addRecipeButton = findViewById(R.id.addRecipeButton);
         pantryNavigation = findViewById(R.id.pantryNavigation);
         settingsNavigation = findViewById(R.id.settingsNavigation);
@@ -70,65 +74,93 @@ public class RecipesActivity extends AppCompatActivity {
         recipesListView.setAdapter(recipeAdapter);
 
         //watches for the user to click and then checks the words entered for a match
-        searchRecipesButton.setOnClickListener(view -> {
-            String searchWords = searchRecipes.getText().toString().trim().toLowerCase();
-            ArrayList<Recipe> foundRecipes = new ArrayList<>();
+        searchRecipesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-            for (Recipe recipe : recipes) {
-                if (recipe.getRecipeName().toLowerCase().contains(searchWords)) {
-                    foundRecipes.add(recipe);
+                String searchWords = searchRecipes.getText().toString().trim().toLowerCase();
+                ArrayList<Recipe> foundRecipes = new ArrayList<>();
+
+                for (Recipe recipe : recipes) {
+                    if (recipe.getRecipeName().toLowerCase().contains(searchWords)) {
+                        foundRecipes.add(recipe);
+                    }
                 }
+                suggestedRecipesText.setVisibility(View.GONE);
+                noSuggestedRecipesText.setVisibility(View.GONE);
+                recipeAdapter.updateRecipeList(foundRecipes);
             }
-
-            noSuggestedRecipesText.setVisibility(View.GONE);
-            recipeAdapter.updateRecipeList(foundRecipes);
         });
 
         //shows only recipes where all ingredients are available with 100% match as per rule
-        suggestedRecipesButton.setOnClickListener(view -> {
-            ArrayList<Recipe> suggestedRecipes = new ArrayList<>();
-            PantryDataSource pantryDataSource = new PantryDataSource(RecipesActivity.this);
+        suggestedRecipesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recipeSearchContainer.setVisibility(View.GONE);
+                searchRecipes.setText("");
 
-            pantryDataSource.open();
-            ArrayList<Ingredient> foundIngredients = pantryDataSource.getAllIngredients();
-            pantryDataSource.close();
+                ArrayList<Recipe> suggestedRecipes = new ArrayList<>();
+                PantryDataSource pantryDataSource = new PantryDataSource(RecipesActivity.this);
 
-            for (Recipe recipe : recipes) {
-                if (recipeMatched(recipe, foundIngredients)) {
-                    suggestedRecipes.add(recipe);
+                pantryDataSource.open();
+                ArrayList<Ingredient> foundIngredients = pantryDataSource.getAllIngredients();
+                pantryDataSource.close();
+
+                for (Recipe recipe : recipes) {
+                    if (recipeMatched(recipe, foundIngredients)) {
+                        suggestedRecipes.add(recipe);
+                    }
                 }
-            }
+                suggestedRecipesText.setVisibility(View.VISIBLE);
 
-            if (suggestedRecipes.isEmpty()) {
-                noSuggestedRecipesText.setVisibility(View.VISIBLE);
-            } else {
-                noSuggestedRecipesText.setVisibility(View.GONE);
+                if (suggestedRecipes.isEmpty()) {
+                    noSuggestedRecipesText.setVisibility(View.VISIBLE);
+                }
+                else {
+                    noSuggestedRecipesText.setVisibility(View.GONE);
+                }
+                recipeAdapter.updateRecipeList(suggestedRecipes);
             }
-
-            recipeAdapter.updateRecipeList(suggestedRecipes);
         });
 
         /*these listeners watch for users clicking the view all, add recipe and bottom nav buttons
-        and tells app what to do */
-        viewAllRecipesButton.setOnClickListener(view -> {
-            searchRecipes.setText("");
-            noSuggestedRecipesText.setVisibility(View.GONE);
-            recipeAdapter.updateRecipeList(recipes);
+        and tells app what to do like hiding or making text visible */
+        viewAllRecipesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recipeSearchContainer.setVisibility(View.VISIBLE);
+                searchRecipes.setText("");
+                suggestedRecipesText.setVisibility(View.GONE);
+                noSuggestedRecipesText.setVisibility(View.GONE);
+                recipeAdapter.updateRecipeList(recipes);
+            }
         });
 
-        addRecipeButton.setOnClickListener(view -> {
-            Intent addRecipeIntent = new Intent(RecipesActivity.this, AddEditRecipeActivity.class);
-            startActivity(addRecipeIntent);
+        addRecipeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent addRecipeIntent = new Intent(RecipesActivity.this,
+                        AddEditRecipeActivity.class);
+                startActivity(addRecipeIntent);
+            }
         });
 
-        pantryNavigation.setOnClickListener(view -> {
-            Intent pantryIntent = new Intent(RecipesActivity.this, MainActivity.class);
-            startActivity(pantryIntent);
+        pantryNavigation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pantryIntent = new Intent(RecipesActivity.this,
+                        MainActivity.class);
+                startActivity(pantryIntent);
+            }
         });
 
-        settingsNavigation.setOnClickListener(view -> {
-            Intent settingsIntent = new Intent(RecipesActivity.this, SettingsActivity.class);
-            startActivity(settingsIntent);
+        settingsNavigation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent settingsIntent = new Intent(RecipesActivity.this,
+                        SettingsActivity.class);
+                startActivity(settingsIntent);
+            }
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -206,7 +238,7 @@ public class RecipesActivity extends AppCompatActivity {
         return false;
     }
 
-    //displays the recipes when the user comes back- calls recipe methods
+    //displays the recipes when the user comes back, then calls recipe methods
     @Override
     protected void onResume() {
         super.onResume();
@@ -215,9 +247,9 @@ public class RecipesActivity extends AppCompatActivity {
             recipesDataSource.open();
             recipes = recipesDataSource.getAllRecipes();
             recipesDataSource.close();
-
             recipeAdapter.updateRecipeList(recipes);
             noSuggestedRecipesText.setVisibility(View.GONE);
+            suggestedRecipesText.setVisibility(View.GONE);
         }
     }
 }
