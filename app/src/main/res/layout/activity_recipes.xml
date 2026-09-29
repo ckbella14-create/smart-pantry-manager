@@ -36,8 +36,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:layout_marginEnd="6dp"
-            android:background="@drawable/button_beige"
-            app:backgroundTint="@null"
+            app:backgroundTint="#E0E0E0"
             android:text="Suggested Recipes"
             android:textColor="#075E68"
             android:textSize="13sp" />
@@ -48,8 +47,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:layout_marginStart="6dp"
-            android:background="@drawable/button_beige"
-            app:backgroundTint="@null"
+            app:backgroundTint="#E0E0E0"
             android:text="View All"
             android:textColor="#075E68"
             android:textSize="13sp" />
