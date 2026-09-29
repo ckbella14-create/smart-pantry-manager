@@ -1,123 +1,117 @@
-//package
 package com.mobile_app.smartpantrymanager;
 
 //imports
-
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-//this class handles connecting all the pantry data to the views in each RecycleView row
-public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.IngredientViewHolder> {
+//this class handles connecting all the recipe data to the views in each RecyclerView row
+public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
-    //list of pantry items to display
-    private ArrayList<Ingredient> ingredients;
+    //list of recipes to display
+    private ArrayList<Recipe> recipes;
     private Context context;
 
     //constructor
-    public RecipeAdapter(ArrayList<Ingredient> ingredients, Context context) {
-        this.ingredients = ingredients;
+    public RecipeAdapter(ArrayList<Recipe> recipes, Context context) {
+        this.recipes = recipes;
         this.context = context;
     }
 
-    //this class stores the views for one pantry item
-    public static class IngredientViewHolder extends RecyclerView.ViewHolder {
-        TextView ingredientNameTextView;
-        TextView quantityTextView;
-        TextView expiryDateTextView;
-        Button editIngredientButton;
-        Button deleteIngredientButton;
+    //this class stores the views for one recipe
+    public static class RecipeViewHolder extends RecyclerView.ViewHolder {
+        TextView recipeNameTextView;
+        TextView recipeIngredientCountTextView;
+        TextView ingredientMatchTextView;
+        Button viewRecipeButton;
 
-        public IngredientViewHolder(@NonNull View itemView) {
+        public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            ingredientNameTextView = itemView.findViewById(R.id.ingredientNameTextView);
-            quantityTextView = itemView.findViewById(R.id.quantityTextView);
-            expiryDateTextView = itemView.findViewById(R.id.expiryDateTextView);
-            editIngredientButton = itemView.findViewById(R.id.editIngredientButton);
-            deleteIngredientButton = itemView.findViewById(R.id.deleteIngredientButton);
+            recipeNameTextView = itemView.findViewById(R.id.recipeNameTextView);
+            recipeIngredientCountTextView = itemView.findViewById(R.id.recipeIngredientCountTextView);
+            ingredientMatchTextView = itemView.findViewById(R.id.ingredientMatchTextView);
+            viewRecipeButton = itemView.findViewById(R.id.viewRecipeButton);
         }
     }
 
-    //this creates a view so that it can be displayed
+    //this creates a recipe row so that it can be displayed
     @Override
     @NonNull
-    public IngredientViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.ingredient_row, parent, false);
+                R.layout.recipe_row, parent, false);
 
-        return new IngredientViewHolder(view);
+        return new RecipeViewHolder(view);
     }
 
-    // this method gets the pantry item for the current row for the display
+    //gets the recipe for the current row and displays its details
     @Override
-    public void onBindViewHolder(@NonNull IngredientViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
 
-        Ingredient ingredient = ingredients.get(position);
+        Recipe recipe = recipes.get(position);
 
-        //puts the item data into the views from pantry_item
-        holder.ingredientNameTextView.setText(ingredient.getIngredientName());
+        //puts the recipe name into the recipe row
+        holder.recipeNameTextView.setText(recipe.getRecipeName());
 
-        holder.quantityTextView.setText("Quantity: " + ingredient.getQuantity() + " " +
-                ingredient.getUnit());
+        //counts how many ingredients have been entered for this recipe
+        int ingredientCount = 0;
 
-        holder.expiryDateTextView.setText("Expiry Date: " + ingredient.getExpiryDate());
+        if (recipe.getIngredient1() != null && !recipe.getIngredient1().isEmpty()) {
+            ingredientCount++;
+        }
+        if (recipe.getIngredient2() != null && !recipe.getIngredient2().isEmpty()) {
+            ingredientCount++;
+        }
+        if (recipe.getIngredient3() != null && !recipe.getIngredient3().isEmpty()) {
+            ingredientCount++;
+        }
+        if (recipe.getIngredient4() != null && !recipe.getIngredient4().isEmpty()) {
+            ingredientCount++;
+        }
+        if (recipe.getIngredient5() != null && !recipe.getIngredient5().isEmpty()) {
+            ingredientCount++;
+        }
+        if (recipe.getIngredient6() != null && !recipe.getIngredient6().isEmpty()) {
+            ingredientCount++;
+        }
+        if (recipe.getIngredient7() != null && !recipe.getIngredient7().isEmpty()) {
+            ingredientCount++;
+        }
+        if (recipe.getIngredient8() != null && !recipe.getIngredient8().isEmpty()) {
+            ingredientCount++;
+        }
+        if (recipe.getIngredient9() != null && !recipe.getIngredient9().isEmpty()) {
+            ingredientCount++;
+        }
+        if (recipe.getIngredient10() != null && !recipe.getIngredient10().isEmpty()) {
+            ingredientCount++;
+        }
 
-        //opens the selected ingredient so that it can be edited
-        holder.editIngredientButton.setOnClickListener(view -> {
+        holder.recipeIngredientCountTextView.setText(ingredientCount + " ingredients");
 
-            Intent toEditIngredient = new Intent(context, AddEditIngredientActivity.class);
-
-            toEditIngredient.putExtra("ingredientId", ingredient.getId());
-            toEditIngredient.putExtra("ingredientName", ingredient.getIngredientName());
-            toEditIngredient.putExtra("quantity", ingredient.getQuantity());
-            toEditIngredient.putExtra("unit", ingredient.getUnit());
-            toEditIngredient.putExtra("expiryDate", ingredient.getExpiryDate());
-
-            context.startActivity(toEditIngredient);
-        });
-
-        //deletes the ingredient selected by user
-        holder.deleteIngredientButton.setOnClickListener(view -> {
-
-            PantryDataSource pantryDataSource = new PantryDataSource(context);
-            pantryDataSource.open();
-
-            boolean deleted = pantryDataSource.deleteIngredient(ingredient);
-
-            pantryDataSource.close();
-
-            if (deleted) {
-
-                Toast.makeText(context, "Ingredient deleted", Toast.LENGTH_SHORT).show();
-
-                if (ingredients.isEmpty() && context instanceof MainActivity) {
-                    ((MainActivity) context).showEmptyPantry();
-                }
-            }
-        });
+        //ingredient matching will be added next
+        holder.ingredientMatchTextView.setText("");
     }
 
-    // tells RecyclerViewer how many rows to display
+    //tells RecyclerView how many recipe rows to display
     @Override
     public int getItemCount() {
-        return ingredients.size();
+        return recipes.size();
     }
 
-    //updates the pantry list with the items that match the search exacty as required
-    public void updateIngredientList(ArrayList<Ingredient> foundIngredients) {
-        ingredients = foundIngredients;
+    //updates the recipe list with the recipes that need to be displayed
+    public void updateRecipeList(ArrayList<Recipe> foundRecipes) {
+        recipes = foundRecipes;
         notifyDataSetChanged();
     }
 }

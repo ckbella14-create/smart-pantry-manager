@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- header section -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp">
+
+            <!-- header image -->
+            <ImageView
+                android:id="@+id/recipesHeaderImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="Recipes header"
+                android:scaleType="centerCrop"
+                android:src="@drawable/new_recipes" />
+
+        </FrameLayout>
+
+        <!-- recipe name -->
+        <TextView
+            android:id="@+id/RecipeNameLbl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:paddingBottom="12dp"
+            android:text="Recipe Name *"
+            android:textColor="#056B75"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/enterRecipeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:hint="Enter recipe name"
+            android:inputType="textCapWords"
+            android:textSize="16sp" />
+
+        <!-- recipe ingredients -->
+        <TextView
+            android:id="@+id/IngredientsLbl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ingredients"
+            android:textColor="#056B75"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- ingredient format hint -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="10dp"
+            android:text="Enter as: Ingredient - QuantityUnit. Use the same unit as your pantry for accurate matching. Rice - 100g or Milk - 250ml"
+            android:textColor="#78909C"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/enterIngredient1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingredient 1 - QuantityUnit"
+            android:inputType="textCapWords" />
+
+        <EditText
+            android:id="@+id/enterIngredient2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingredient 2 - QuantityUnit"
+            android:inputType="textCapWords" />
+
+        <EditText
+            android:id="@+id/enterIngredient3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingredient 3 - QuantityUnit"
+            android:inputType="textCapWords" />
+
+        <EditText
+            android:id="@+id/enterIngredient4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingredient 4 - QuantityUnit"
+            android:inputType="textCapWords" />
+
+        <EditText
+            android:id="@+id/enterIngredient5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingredient 5 - QuantityUnit"
+            android:inputType="textCapWords" />
+
+        <EditText
+            android:id="@+id/enterIngredient6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingredient 6 - QuantityUnit"
+            android:inputType="textCapWords" />
+
+        <EditText
+            android:id="@+id/enterIngredient7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingredient 7 - QuantityUnit"
+            android:inputType="textCapWords" />
+
+        <EditText
+            android:id="@+id/enterIngredient8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingredient 8 - QuantityUnit"
+            android:inputType="textCapWords" />
+
+        <EditText
+            android:id="@+id/enterIngredient9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingredient 9 - QuantityUnit"
+            android:inputType="textCapWords" />
+
+        <EditText
+            android:id="@+id/enterIngredient10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:hint="Ingredient 10 - QuantityUnit"
+            android:inputType="textCapWords" />
+
+        <!-- recipe instructions -->
+        <TextView
+            android:id="@+id/InstructionsLbl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="12dp"
+            android:text="Instructions"
+            android:textColor="#056B75"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/enterInstructions"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:gravity="top"
+            android:hint="Enter recipe instructions"
+            android:inputType="textMultiLine"
+            android:padding="10dp"
+            android:textSize="16sp" />
+
+        <!-- button to save the recipe -->
+        <Button
+            android:id="@+id/saveRecipeBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_teal"
+            android:backgroundTint="@null"
+            android:text="Save Recipe"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</ScrollView>

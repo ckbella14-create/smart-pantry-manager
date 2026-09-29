@@ -3,7 +3,7 @@ package com.mobile_app.smartpantrymanager;
 import android.os.Bundle;
 import android.content.Intent;
 import android.widget.LinearLayout;
-
+import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -12,9 +12,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class RecipesActivity extends AppCompatActivity {
 
-    //attributes for the bottom navigation
+    //attributes for the bottom navigation and the button
     private LinearLayout pantryNavigation;
     private LinearLayout settingsNavigation;
+    private Button addRecipeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,21 +23,18 @@ public class RecipesActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_recipes);
 
-        //connects the bottom navigation to the layout
+        //connects the Add Recipe button from the layout to this activity
+        addRecipeButton = findViewById(R.id.addRecipeButton);
+
+        //connects the bottom navigation to the layout and the other screens
         pantryNavigation = findViewById(R.id.pantryNavigation);
         settingsNavigation = findViewById(R.id.settingsNavigation);
-
-        //opens the My Pantry screen
-        pantryNavigation.setOnClickListener(view -> {
-            Intent pantryIntent =
-                    new Intent(RecipesActivity.this, MainActivity.class);
-            startActivity(pantryIntent);
+        addRecipeButton.setOnClickListener(view -> {
+            Intent addRecipeIntent = new Intent(RecipesActivity.this, AddEditRecipeActivity.class);
+            startActivity(addRecipeIntent);
         });
-
-        //opens the Settings screen
         settingsNavigation.setOnClickListener(view -> {
-            Intent settingsIntent =
-                    new Intent(RecipesActivity.this, SettingsActivity.class);
+            Intent settingsIntent = new Intent(RecipesActivity.this, SettingsActivity.class);
             startActivity(settingsIntent);
         });
 

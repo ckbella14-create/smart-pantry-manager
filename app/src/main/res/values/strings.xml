@@ -8,19 +8,13 @@
         <item>ml</item>
         <item>L</item>
         <item>units</item>
+        <item>bottle</item>
+        <item>packet</item>
+        <item>can</item>
         <item>cups</item>
         <item>teaspoon</item>
         <item>tablespoon</item>
         <item>Other</item>
     </string-array>
 
-    <!--this list is for the categories-->
-    <string-array name="pantry_categories">
-        <item>Select category</item>
-        <item>Fridge &amp; Freezer</item>
-        <item>Dry Ingredients</item>
-        <item>Liquids, Oils &amp; Condiments</item>
-        <item>Canned &amp; Jarred Foods</item>
-        <item>Fruit &amp; Vegetables</item>
-    </string-array>
 </resources>

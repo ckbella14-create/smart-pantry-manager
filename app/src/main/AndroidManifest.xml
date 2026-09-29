@@ -33,14 +33,19 @@
             android:exported="false" />
 
         <activity
-            android:name=".RecipesActivity"
+            android:name=".SettingsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".SettingsActivity"
+            android:name=".RecipesActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+
+        <activity
+            android:name=".AddEditRecipeActivity"
+            android:exported="false" />
 
     </application>
 

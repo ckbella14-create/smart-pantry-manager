@@ -67,7 +67,6 @@ public class RecipesDataSource {
         if (cursor.moveToFirst()) {
             do {
                 Recipe row = new Recipe();
-
                 row.setId(cursor.getInt(cursor.getColumnIndexOrThrow(PantryDBHelper.RECIPE_COL1_ID)));
                 row.setRecipeName(cursor.getString(cursor.getColumnIndexOrThrow(PantryDBHelper.RECIPE_COL2_NAME)));
                 row.setIngredient1(cursor.getString(cursor.getColumnIndexOrThrow(PantryDBHelper.RECIPE_COL3_INGREDIENT1)));
@@ -110,10 +109,8 @@ public class RecipesDataSource {
         recipeValues.put(PantryDBHelper.RECIPE_COL12_INGREDIENT10, recipe.getIngredient10());
         recipeValues.put(PantryDBHelper.RECIPE_COL13_INSTRUCTIONS, recipe.getInstructions());
 
-        int rowsUpdated = database.update(PantryDBHelper.RECIPE_TABLE_NAME,
-                recipeValues, PantryDBHelper.RECIPE_COL1_ID + " = ?",
-                new String[]{String.valueOf(recipe.getId())});
-
+        int rowsUpdated = database.update(PantryDBHelper.RECIPE_TABLE_NAME, recipeValues,
+                PantryDBHelper.RECIPE_COL1_ID + " = ?", new String[]{String.valueOf(recipe.getId())});
         return rowsUpdated > 0;
     }
 }
