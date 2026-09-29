@@ -4,7 +4,7 @@
     <!-- this gives a different colour while button is being pressed -->
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <solid android:color="#E6DDCE" />
+            <solid android:color="#E0E0E0" />
             <corners android:radius="10dp" />
         </shape>
     </item>
@@ -12,7 +12,7 @@
     <!-- normal button colour -->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#F3EDE4" />
+            <solid android:color="#F5F5F5" />
             <corners android:radius="10dp" />
         </shape>
     </item>

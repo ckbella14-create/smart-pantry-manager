@@ -7,74 +7,61 @@
     android:padding="12dp"
     android:background="@drawable/pantry_item_background">
 
-    <!--holds the recipe icon and recipe information-->
+    <!--shows/displays recipe name-->
+    <TextView
+        android:id="@+id/recipeNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recipe Name"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#075E68" />
+
+    <!--shows how many ingredients the recipe needs-->
+    <TextView
+        android:id="@+id/recipeIngredientCountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="5 ingredients"
+        android:textSize="14sp"
+        android:textColor="#78909C" />
+
+    <!--shows how many recipe ingredients are actually available in the pantry-->
+    <TextView
+        android:id="@+id/ingredientMatchTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="4/5 ingredients available"
+        android:textSize="14sp"
+        android:textColor="#075E68" />
+
+    <!--buttons to open, view and edit the recipe-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:layout_marginTop="8dp">
 
-        <!--dining icon for recipe-->
-        <ImageView
-            android:id="@+id/recipeIcon"
-            android:layout_width="40dp"
+        <Button
+            android:id="@+id/viewRecipeButton"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_marginEnd="12dp"
-            android:src="@drawable/dining"
-            android:contentDescription="Recipe"
-            app:tint="#E6A72E" />
+            android:backgroundTint="#E0E0E0"
+            android:text="View Recipe"
+            android:textColor="#075E68"
+            android:textSize="12sp" />
 
-        <!--holds the recipe name and ingredient information-->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <!--shows/displays recipe name-->
-            <TextView
-                android:id="@+id/recipeNameTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Recipe Name"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#075E68" />
-
-            <!--shows how many ingredients the recipe needs-->
-            <TextView
-                android:id="@+id/recipeIngredientCountTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="5 ingredients"
-                android:textSize="14sp"
-                android:textColor="#78909C" />
-
-            <!--shows how many recipe ingredients are available in the pantry-->
-            <TextView
-                android:id="@+id/ingredientMatchTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="4/5 ingredients available"
-                android:textSize="14sp"
-                android:textColor="#075E68" />
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/editRecipeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#E0E0E0"
+            android:text="Edit Recipe"
+            android:textColor="#075E68"
+            android:textSize="12sp" />
 
     </LinearLayout>
-
-    <!--button to open and view the recipe-->
-    <Button
-        android:id="@+id/viewRecipeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_gravity="end"
-        android:backgroundTint="#E0E0E0"
-        android:text="View Recipe"
-        android:textColor="#075E68"
-        android:textSize="12sp" />
-
 </LinearLayout>

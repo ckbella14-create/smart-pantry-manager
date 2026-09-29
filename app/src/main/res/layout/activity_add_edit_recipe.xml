@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="10dp"
-            android:text="Enter as: Ingredient - QuantityUnit. Use the same unit as your pantry for accurate matching. Rice - 100g or Milk - 250ml"
+            android:text="Enter as: Ingredient, Quantity, Unit. Use the same unit as your pantry for accurate matching. Example: Rice, 100, g"
             android:textColor="#78909C"
             android:textSize="13sp" />
 
@@ -72,63 +72,63 @@
             android:id="@+id/enterIngredient1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingredient 1 - QuantityUnit"
+            android:hint="Ingredient 1, Quantity, Unit"
             android:inputType="textCapWords" />
 
         <EditText
             android:id="@+id/enterIngredient2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingredient 2 - QuantityUnit"
+            android:hint="Ingredient 2, Quantity, Unit"
             android:inputType="textCapWords" />
 
         <EditText
             android:id="@+id/enterIngredient3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingredient 3 - QuantityUnit"
+            android:hint="Ingredient 3, Quantity, Unit"
             android:inputType="textCapWords" />
 
         <EditText
             android:id="@+id/enterIngredient4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingredient 4 - QuantityUnit"
+            android:hint="Ingredient 4, Quantity, Unit"
             android:inputType="textCapWords" />
 
         <EditText
             android:id="@+id/enterIngredient5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingredient 5 - QuantityUnit"
+            android:hint="Ingredient 5, Quantity, Unit"
             android:inputType="textCapWords" />
 
         <EditText
             android:id="@+id/enterIngredient6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingredient 6 - QuantityUnit"
+            android:hint="Ingredient 6, Quantity, Unit"
             android:inputType="textCapWords" />
 
         <EditText
             android:id="@+id/enterIngredient7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingredient 7 - QuantityUnit"
+            android:hint="Ingredient 7, Quantity, Unit"
             android:inputType="textCapWords" />
 
         <EditText
             android:id="@+id/enterIngredient8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingredient 8 - QuantityUnit"
+            android:hint="Ingredient 8, Quantity, Unit"
             android:inputType="textCapWords" />
 
         <EditText
             android:id="@+id/enterIngredient9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingredient 9 - QuantityUnit"
+            android:hint="Ingredient 9, Quantity, Unit"
             android:inputType="textCapWords" />
 
         <EditText
@@ -136,7 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:hint="Ingredient 10 - QuantityUnit"
+            android:hint="Ingredient 10, Quantity, Unit"
             android:inputType="textCapWords" />
 
         <!-- recipe instructions -->
