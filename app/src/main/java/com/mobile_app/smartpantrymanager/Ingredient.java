@@ -1,8 +1,6 @@
 //package
 package com.mobile_app.smartpantrymanager;
 
-//imports
-
 //This class will create an object or a row of an ingredient's information
 public class Ingredient {
     //attributes
@@ -13,7 +11,7 @@ public class Ingredient {
     private String expiryDate;
 
     //default constructor
-    public Ingredient(){
+    public Ingredient() {
     }
 
     //getter methods to access the private attributes
@@ -37,7 +35,6 @@ public class Ingredient {
         return expiryDate;
     }
 
-
     // setter methods to set the values of the fields
     public void setId(int id) {
         this.id = id;
@@ -58,5 +55,4 @@ public class Ingredient {
     public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
     }
-
 }

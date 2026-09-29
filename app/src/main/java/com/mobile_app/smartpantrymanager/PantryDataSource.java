@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
 import android.database.Cursor;
-
 import java.util.ArrayList;
 
 //this class handles access to pantry ingredients data stored in SQLite db
@@ -20,7 +19,7 @@ public class PantryDataSource {
         dbHelper = new PantryDBHelper(context);
     }
 
-    //methods to open and close a connection to sqlite
+    //methods to open and close a connection to sqlite database (db)
     public void open() {
         database = dbHelper.getWritableDatabase();
     }
@@ -32,16 +31,10 @@ public class PantryDataSource {
     //this will add a new ingredient to the db
     //ContentValues object stores column/value pairs
     public long addIngredient(Ingredient ingredient) {
-
         ContentValues ingredientValues = new ContentValues();
-
-        ingredientValues.put(PantryDBHelper.COL2_INGREDIENT_NAME,
-                ingredient.getIngredientName());
-
+        ingredientValues.put(PantryDBHelper.COL2_INGREDIENT_NAME, ingredient.getIngredientName());
         ingredientValues.put(PantryDBHelper.COL3_QUANTITY, ingredient.getQuantity());
-
         ingredientValues.put(PantryDBHelper.COL4_UNIT, ingredient.getUnit());
-
         ingredientValues.put(PantryDBHelper.COL5_EXPIRY_DATE, ingredient.getExpiryDate());
 
         return database.insert(PantryDBHelper.PANTRY_TABLE_NAME, null, ingredientValues);
@@ -49,7 +42,6 @@ public class PantryDataSource {
 
     //method to get all ingredients from the database
     public ArrayList<Ingredient> getAllIngredients() {
-
         ArrayList<Ingredient> ingredients = new ArrayList<>();
 
         //selects all ingredients and sorts them by ingredient name
@@ -63,44 +55,25 @@ public class PantryDataSource {
         if (cursor.moveToFirst()) {
             do {
                 Ingredient row = new Ingredient();
-
-                row.setId(cursor.getInt(
-                        cursor.getColumnIndexOrThrow(PantryDBHelper.COL1_ID)));
-
-                row.setIngredientName(cursor.getString(
-                        cursor.getColumnIndexOrThrow(PantryDBHelper.COL2_INGREDIENT_NAME)));
-
-                row.setQuantity(cursor.getDouble(
-                        cursor.getColumnIndexOrThrow(PantryDBHelper.COL3_QUANTITY)));
-
-                row.setUnit(cursor.getString(
-                        cursor.getColumnIndexOrThrow(PantryDBHelper.COL4_UNIT)));
-
-                row.setExpiryDate(cursor.getString(
-                        cursor.getColumnIndexOrThrow(PantryDBHelper.COL5_EXPIRY_DATE)));
-
+                row.setId(cursor.getInt(cursor.getColumnIndexOrThrow(PantryDBHelper.COL1_ID)));
+                row.setIngredientName(cursor.getString(cursor.getColumnIndexOrThrow(PantryDBHelper.COL2_INGREDIENT_NAME)));
+                row.setQuantity(cursor.getDouble(cursor.getColumnIndexOrThrow(PantryDBHelper.COL3_QUANTITY)));
+                row.setUnit(cursor.getString(cursor.getColumnIndexOrThrow(PantryDBHelper.COL4_UNIT)));
+                row.setExpiryDate(cursor.getString(cursor.getColumnIndexOrThrow(PantryDBHelper.COL5_EXPIRY_DATE)));
                 ingredients.add(row);
-
             } while (cursor.moveToNext());
         }
 
         cursor.close();
-
         return ingredients;
     }
 
     //this method updates an existing ingredient by putting the changed values into the table
     public boolean updateIngredient(Ingredient ingredient) {
-
         ContentValues ingredientValues = new ContentValues();
-
-        ingredientValues.put(PantryDBHelper.COL2_INGREDIENT_NAME,
-                ingredient.getIngredientName());
-
+        ingredientValues.put(PantryDBHelper.COL2_INGREDIENT_NAME, ingredient.getIngredientName());
         ingredientValues.put(PantryDBHelper.COL3_QUANTITY, ingredient.getQuantity());
-
         ingredientValues.put(PantryDBHelper.COL4_UNIT, ingredient.getUnit());
-
         ingredientValues.put(PantryDBHelper.COL5_EXPIRY_DATE, ingredient.getExpiryDate());
 
         int rowsUpdated = database.update(PantryDBHelper.PANTRY_TABLE_NAME,
@@ -112,7 +85,6 @@ public class PantryDataSource {
 
     //this method deletes an existing ingredient
     public boolean deleteIngredient(Ingredient ingredient) {
-
         int rowsDeleted = database.delete(PantryDBHelper.PANTRY_TABLE_NAME,
                 PantryDBHelper.COL1_ID + " = ?",
                 new String[]{String.valueOf(ingredient.getId())});

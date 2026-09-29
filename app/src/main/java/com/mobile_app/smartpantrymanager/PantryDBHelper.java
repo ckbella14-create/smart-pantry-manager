@@ -10,13 +10,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 the built in sqlite db function*/
 public class PantryDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "SmartPantry.db";
-    //as per study guide,track changes to db structure
+    //as per study guide, this lets us track changes to db structure
     private static final int DATABASE_VERSION = 3;
 
     //columns of the pantry table
     public static final String PANTRY_TABLE_NAME = "PantryItems";
-
-    //pantry / ingredients table column constants
     public static final String COL1_ID = "_id";
     public static final String COL2_INGREDIENT_NAME = "ingredient_name";
     public static final String COL3_QUANTITY = "quantity";
@@ -24,10 +22,8 @@ public class PantryDBHelper extends SQLiteOpenHelper {
     public static final String COL5_EXPIRY_DATE = "expiry_date";
 
 
-    //columns of the recipes table to store preloaded recipes
+    //columns of the recipes table to store recipes
     public static final String RECIPE_TABLE_NAME = "Recipes";
-
-    //these are the table column constants for the Recipes table
     public static final String RECIPE_COL1_ID = "_id";
     public static final String RECIPE_COL2_NAME = "recipe_name";
     public static final String RECIPE_COL3_INGREDIENT1 = "ingredient1";
@@ -42,7 +38,7 @@ public class PantryDBHelper extends SQLiteOpenHelper {
     public static final String RECIPE_COL12_INGREDIENT10 = "ingredient10";
     public static final String RECIPE_COL13_INSTRUCTIONS = "instructions";
 
-    //sql statement to create the pantry table with above information
+    //sql statement to create the pantry table
     private static final String CREATE_PANTRY_TABLE =
             "CREATE TABLE " + PANTRY_TABLE_NAME + "(" +
                     COL1_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -51,7 +47,7 @@ public class PantryDBHelper extends SQLiteOpenHelper {
                     COL4_UNIT + " TEXT NOT NULL, " +
                     COL5_EXPIRY_DATE + " TEXT " +")";
 
-    //sql statement to create the recipes table with the 10 ingredient fields
+    //sql statement to create the recipes table with the max 10 ingredient fields
     private static final String CREATE_RECIPE_TABLE =
             "CREATE TABLE " + RECIPE_TABLE_NAME + "(" +
                     RECIPE_COL1_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -73,15 +69,13 @@ public class PantryDBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    //overrides android's onCreate method to create a database and both tables
+    //overrides android's onCreate method to create a database so that both tables are created
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_PANTRY_TABLE);
         db.execSQL(CREATE_RECIPE_TABLE);
     }
 
-    //this is to update the db version if changes are made
-    // by creating a temp table to store the existing pantry data first
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < 3) {

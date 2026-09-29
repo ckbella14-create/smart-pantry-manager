@@ -19,91 +19,73 @@ import android.widget.LinearLayout;
 import android.widget.EditText;
 import android.view.View;
 
-//this class manages ...
+//this class manages the main pantry screen
 public class MainActivity extends AppCompatActivity {
 
-    //attributes for the pantry list and add ingredients.button
     private RecyclerView ingredientDisplay;
     private TextView noIngredientsText;
-
-    //this is used for the pantry data and the adapter to connect them
     private PantryDataSource pantryDataSource;
     private ArrayList<Ingredient> ingredientList;
     private IngredientAdapter ingredientAdapter;
-    private LinearLayout recipesNavigation;
-    private LinearLayout settingsNavigation;
 
-    //search field for pantry ingredients
+    //search fields for pantry ingredients search
     private EditText searchIngredients;
     private ImageView searchIngredientsButton;
     private Button addIngredientButton;
+
+    private LinearLayout recipesNavigation;
+    private LinearLayout settingsNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-
-        //tells Recyclerview to show pantry items in the vertical list formatted in activity main
         setContentView(R.layout.activity_main);
 
-        ingredientDisplay = findViewById(R.id.ingredientDisplay);
-        ingredientDisplay.setLayoutManager(new LinearLayoutManager(this));
-        recipesNavigation = findViewById(R.id.recipesNavigation);
-        settingsNavigation = findViewById(R.id.settingsNavigation);
+        // to find the views
         searchIngredients = findViewById(R.id.searchIngredients);
         searchIngredientsButton = findViewById(R.id.searchIngredientsButton);
-        addIngredientButton = findViewById(R.id.addIngredientButton);
+        ingredientDisplay = findViewById(R.id.ingredientDisplay);
         noIngredientsText = findViewById(R.id.noIngredientsText);
+        addIngredientButton = findViewById(R.id.addIngredientButton);
+        recipesNavigation = findViewById(R.id.recipesNavigation);
+        settingsNavigation = findViewById(R.id.settingsNavigation);
 
-        //creates open connection to the pantry database in sqlite
+        //gets the saved pantry ingredients
         pantryDataSource = new PantryDataSource(this);
         pantryDataSource.open();
-
-        //to get all the pantry items/records
         ingredientList = pantryDataSource.getAllIngredients();
 
-        //  this part connects the items to the Recycle view through the adapter
         ingredientAdapter = new IngredientAdapter(ingredientList, MainActivity.this);
+        ingredientDisplay.setLayoutManager(new LinearLayoutManager(this));
         ingredientDisplay.setAdapter(ingredientAdapter);
 
-        //shows message if there are no ingredients in the pantry
         updateEmptyPantryMessage();
 
-        //searches the whole pantry for certain ingredient when search button is clicked
+        //This is for the search /add buttons and navigation
         searchIngredientsButton.setOnClickListener(view -> {
-
-            String searchText = searchIngredients.getText().toString().trim().toLowerCase();
+            String searchWords = searchIngredients.getText().toString().trim().toLowerCase();
             ArrayList<Ingredient> foundIngredients = new ArrayList<>();
 
-            // checks each ingredient to see if its name matches the search
-
             for (Ingredient ingredient : ingredientList) {
-
-                if (ingredient.getIngredientName().toLowerCase().contains(searchText)) {
+                if (ingredient.getIngredientName().toLowerCase().contains(searchWords)) {
                     foundIngredients.add(ingredient);
                 }
             }
 
-            //this will send matching items to the adapter
-
             ingredientAdapter.updateIngredientList(foundIngredients);
         });
 
-        //when user clicks button code runs
         addIngredientButton.setOnClickListener(view -> {
-            Intent toAddIngredient = new Intent(MainActivity.this,
-                    AddEditIngredientActivity.class);
+            Intent toAddIngredient = new Intent(MainActivity.this, AddEditIngredientActivity.class);
             startActivity(toAddIngredient);
         });
 
-        //  to open the recipes screen
         recipesNavigation.setOnClickListener(view -> {
-            Intent toSuggestedRecipes = new Intent(MainActivity.this,
-                    RecipesActivity.class);
+            Intent toSuggestedRecipes = new Intent(MainActivity.this, RecipesActivity.class);
             startActivity(toSuggestedRecipes);
         });
 
-        //opens  the settings screen
         settingsNavigation.setOnClickListener(view -> {
             Intent toSettings = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(toSettings);
@@ -116,21 +98,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //refreshes pantry when returning from adding or editing an ingredient
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (pantryDataSource != null && ingredientAdapter != null) {
-            ingredientList = pantryDataSource.getAllIngredients();
-            ingredientAdapter.updateIngredientList(ingredientList);
-            updateEmptyPantryMessage();
-        }
-    }
-
-    //shows no items message when pantry is empty
+    //shows no items message when pantry is empty and tells user to add ingredients to show
     private void updateEmptyPantryMessage() {
-
         if (ingredientList.isEmpty()) {
             noIngredientsText.setVisibility(View.VISIBLE);
             ingredientDisplay.setVisibility(View.GONE);
@@ -144,6 +113,18 @@ public class MainActivity extends AppCompatActivity {
     public void showEmptyPantry() {
         noIngredientsText.setVisibility(View.VISIBLE);
         ingredientDisplay.setVisibility(View.GONE);
+    }
+
+    //this is for refreshing pantry when user goes back to pantry screen
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (pantryDataSource != null && ingredientAdapter != null) {
+            ingredientList = pantryDataSource.getAllIngredients();
+            ingredientAdapter.updateIngredientList(ingredientList);
+            updateEmptyPantryMessage();
+        }
     }
 
     @Override

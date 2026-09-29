@@ -14,10 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
-//this class handles connecting all the pantry data to the views in each RecycleView row
+//this class handles connecting all the pantry data to the views in each RecyclerView row
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.IngredientViewHolder> {
 
-    //list of pantry items to display
+    //list of ingredients to display
     private ArrayList<Ingredient> ingredients;
     private Context context;
 
@@ -27,7 +27,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         this.context = context;
     }
 
-    //this class stores the views for one pantry item
+    //this class stores the views for one ingredient
     public static class IngredientViewHolder extends RecyclerView.ViewHolder {
         TextView ingredientNameTextView;
         TextView quantityTextView;
@@ -57,17 +57,16 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         return new IngredientViewHolder(view);
     }
 
-    // this method gets the pantry item for the current row for the display
+    // this method gets the ingredient items for the current row for the display
     @Override
     public void onBindViewHolder(@NonNull IngredientViewHolder holder, int position) {
 
         Ingredient ingredient = ingredients.get(position);
 
-        //puts the item data into the views from pantry_item
+        //puts the item data into the views from ingredient_row
         holder.ingredientNameTextView.setText(ingredient.getIngredientName());
 
-        holder.quantityTextView.setText("Quantity: " + ingredient.getQuantity() + " " +
-                ingredient.getUnit());
+        holder.quantityTextView.setText("Quantity: " + ingredient.getQuantity() + " " + ingredient.getUnit());
 
         holder.expiryDateTextView.setText("Expiry Date: " + ingredient.getExpiryDate());
 
@@ -110,13 +109,12 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         });
     }
 
-    // tells RecyclerViewer how many rows to display
+    // these methods tells RecyclerViewer how many ingredient rows will need to be displayed and to refresh the display
     @Override
     public int getItemCount() {
         return ingredients.size();
     }
 
-    //updates the pantry list with the items that match the search exacty as required
     public void updateIngredientList(ArrayList<Ingredient> foundIngredients) {
         ingredients = foundIngredients;
         notifyDataSetChanged();
