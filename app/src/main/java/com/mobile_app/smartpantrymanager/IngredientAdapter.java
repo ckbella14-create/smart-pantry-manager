@@ -97,6 +97,10 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
             if (deleted) {
 
+                //bug fix - item wasn't deleting immediately during testing
+                ingredients.remove(ingredient);
+                notifyDataSetChanged();
+
                 Toast.makeText(context, "Ingredient deleted", Toast.LENGTH_SHORT).show();
 
                 if (ingredients.isEmpty() && context instanceof MainActivity) {
