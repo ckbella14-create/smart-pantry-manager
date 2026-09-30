@@ -226,7 +226,9 @@ public class RecipesActivity extends AppCompatActivity {
         }
 
         for (Ingredient pantryIngredient : foundIngredients) {
-            boolean nameMatches = pantryIngredient.getIngredientName().trim().equalsIgnoreCase(ingredientName);
+            String pantryIngName = pantryIngredient.getIngredientName().trim().toLowerCase();
+            String recipeName = ingredientName.trim().toLowerCase();
+            boolean nameMatches = pantryIngName.contains(recipeName) || recipeName.contains(pantryIngName);
             boolean unitMatches = pantryIngredient.getUnit().trim().equalsIgnoreCase(unit);
             boolean quantityMatches = pantryIngredient.getQuantity() >= recipeQuantity;
 
