@@ -111,7 +111,8 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
     // these methods tells RecyclerViewer how many ingredient rows will need to be displayed and to refresh the display
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
         return ingredients.size();
     }
 

@@ -82,13 +82,12 @@ public class PantryDataSource {
 
         return rowsUpdated > 0;
     }
+        //this method deletes an existing ingredient
+        public boolean deleteIngredient(Ingredient ingredient){
+            int rowsDeleted = database.delete(PantryDBHelper.PANTRY_TABLE_NAME,
+                    PantryDBHelper.COL1_ID + " = ?",
+                    new String[]{String.valueOf(ingredient.getId())});
 
-    //this method deletes an existing ingredient
-    public boolean deleteIngredient(Ingredient ingredient) {
-        int rowsDeleted = database.delete(PantryDBHelper.PANTRY_TABLE_NAME,
-                PantryDBHelper.COL1_ID + " = ?",
-                new String[]{String.valueOf(ingredient.getId())});
-
-        return rowsDeleted > 0;
+            return rowsDeleted > 0;
+        }
     }
-}

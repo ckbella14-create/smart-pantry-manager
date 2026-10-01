@@ -14,7 +14,7 @@
     <!-- header section layout  -->
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp">
+        android:layout_height="200dp">
 
         <!--header image -->
         <ImageView
@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:contentDescription="Welcome screen header"
             android:scaleType="centerCrop"
-            android:src="@drawable/welcome" />
+            android:src="@drawable/welcome_new" />
 
     </FrameLayout>
 
